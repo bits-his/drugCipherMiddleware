@@ -1,7 +1,7 @@
 package models
 
 type Manufacturer struct {
-	id                 int    `json:"id"`
+	Id                 int    `json:"id"`
 	Pharmacy_license   string `json:"pharmacy_license"`
 	Pharmacist_license string `json:"pharmacist_license"`
 	Name               string `json:"name"`

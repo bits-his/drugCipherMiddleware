@@ -35,8 +35,12 @@ func (repo MySqlRepository) GET_MANUFACTURER(id int) (models.Drug, error) {
 func (repo MySqlRepository) GET_DRUG(id int) (models.Manufacturer, error) {
 	return models.Manufacturer{}, nil
 }
-func (repo MySqlRepository) UPDATE_MANUFACTURER(m *models.Manufacturer) {}
-func (repo MySqlRepository) UPDATE_DRUG(d *models.Drug)                 {}
+func (repo MySqlRepository) UPDATE_MANUFACTURER(m *models.Manufacturer) (*models.Manufacturer, error) {
+	return m, nil
+}
+func (repo MySqlRepository) UPDATE_DRUG(d *models.Drug) (*models.Drug, error) {
+	return d, nil
+}
 
 func (repo MySqlRepository) MIGRATE_ALL() error {
 	_, err := repo.db.ExecContext(context.Background(), cREATE_TABLE_MANUFACTURERS)

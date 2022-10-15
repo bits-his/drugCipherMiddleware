@@ -3,7 +3,7 @@ package models
 import "time"
 
 type Drug struct {
-	id                int       `json:"id"`
+	Id                int       `json:"id"`
 	Drug_name         string    `json:"drug_name"`
 	Drug_generic_name string    `json:"drug_generic_name"`
 	Dosage            int       `json:"dosage"`
