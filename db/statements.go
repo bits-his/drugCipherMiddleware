@@ -1,7 +1,7 @@
 package db
 
 const (
-	CREATE_TABLE_DRUGS = `CREATE TABLE drugs(
+	cREATE_TABLE_DRUGS = `CREATE TABLE drugs(
 		id int(11) NOT NULL,
 		drug_name varchar(50) NOT NULL,
 		drug_generic_name varchar(50) NOT NULL,
@@ -9,12 +9,12 @@ const (
 		date_enrolled timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
 		expiry_date timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
 		nafdac varchar(100) NOT NULL,
-		qr_code blob NOT NULL,
+		qr_code string NOT NULL,
 		manufacturers_id int(11) NOT NULL
 	) ENGINE=InnoDB DEFAULT CHARSET=latin1;`
 
-	CREATE_TABLE_MANUFACTURERS = `CREATE TABLE manufacturers (
-		manufacturers_id int(11) NOT NULL,
+	cREATE_TABLE_MANUFACTURERS = `CREATE TABLE manufacturers (
+		id int(11) NOT NULL,
 		pharmacy_license varchar(50) NOT NULL,
 		pharmacist_license varchar(50) NOT NULL,
 		name varchar(50) NOT NULL,
@@ -24,9 +24,9 @@ const (
 		phone_number varchar(50) NOT NULL
 	  ) ENGINE=InnoDB DEFAULT CHARSET=latin1;`
 
-	ALL_MANUFACTURERS    = `SELECT * FROM manufacturers;`
-	ALL_DRUGS            = `SELECT * FROM drugs;`
-	CREATE_MANUFACTURERS = `INSERT INTO manufacturers(
+	aLL_MANUFACTURERS    = `SELECT * FROM manufacturers;`
+	aLL_DRUGS            = `SELECT * FROM drugs;`
+	cREATE_MANUFACTURERS = `INSERT INTO manufacturers(
     	pharmacy_license,
         pharmacist_license,
         name,
@@ -43,7 +43,7 @@ const (
         _email,
         _phone_number
     );`
-	CREATE_DRUGS = `
+	cREATE_DRUGS = `
 	INSERT INTO drugs (
     	drug_name,
         drug_generic_name,
@@ -65,6 +65,31 @@ const (
         _manufacturers_id
     );
 	`
-	GET_MANUFACTURER = `SELECT * FROM manufacturers WHERE manufacturer_id = ?`
-	GET_DRUG         = `SELECT * FROM drugs WHERE id = ?`
+	gET_MANUFACTURER = `SELECT * FROM manufacturers WHERE id = ?`
+	gET_DRUG         = `SELECT * FROM drugs WHERE id = ?`
+	uPDATE_DRUG      = `
+		UPDATE drugs
+		set drug_name=_drug_name,
+		drug_generic_name=_drug_generic_name,
+		dosage=_dosage,
+		date_enrolled=_date_enrolled,
+		expiry_date=_expiry_date,
+		nafdac=_nafdac,
+		qr_code=_qrcode,
+		Manufacturers_id=_manufacturers_id
+			
+		WHERE id=_id;
+	`
+	uPDATE_MANUFACTURER = `
+	UPDATE manufacturers
+	set pharmacy_license=_pharmacy_license,
+	pharmacist_license=_pharmacist_license,
+	name=_name,
+	address=_address,
+	po_box=_po_box,
+	email=_email,
+	phone_number=_phone_number
+
+	WHERE id=_id;
+	`
 )
